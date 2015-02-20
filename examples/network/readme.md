@@ -24,3 +24,4 @@ ipfs dht findpeer $peerid
 
 
 
+By [whyrusleeping](http://github.com/whyrusleeping)

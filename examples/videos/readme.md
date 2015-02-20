@@ -17,3 +17,4 @@ chromium http://localhost:4001/ipfs/$vidhash
 ```
 (Note: the gateway method works with most video players and browsers)
 
+By [whyrusleeping](http://github.com/whyrusleeping)

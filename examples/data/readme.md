@@ -77,3 +77,4 @@ for example:
 ```
 todo: im stuck here currently, this example is hard to write due to base64 encoding.
 
+By [whyrusleeping](http://github.com/whyrusleeping)

@@ -151,3 +151,5 @@ $ go run client.go <peerID>
 ```
 
 It should print out `Hello! This is whyrusleepings awesome ipfs service`
+
+By [whyrusleeping](http://github.com/whyrusleeping)

@@ -86,3 +86,5 @@ file exists, we will error out from the `Cat` method. `Cat` returns a reader
 that will manage retrieving the file specified by the given hash, whether its
 stored locally on disk or if its pieces are split apart on multiple different
 machines across the planet.
+
+By [whyrusleeping](http://github.com/whyrusleeping)

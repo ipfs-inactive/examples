@@ -46,3 +46,5 @@ user to be able to mount to them via fuse.
 The Bootstrap config array specifies the list of ipfs peers that your daemon
 will connect to on startup. The default values for this are the 'ipfs solarnet'
 nodes, which are a set of VPS servers distributed around the country.
+
+By [whyrusleeping](http://github.com/whyrusleeping)

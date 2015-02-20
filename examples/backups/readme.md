@@ -34,3 +34,4 @@ $ ls
 Through the fuse interface, youll be able to access your files exactly as
 they were when you took the backup.
 
+By [whyrusleeping](http://github.com/whyrusleeping)

@@ -39,3 +39,5 @@ ipfs pin rm -r <foo hash>
 ipfs repo gc
 ipfs cat <foo hash>
 ```
+
+By [whyrusleeping](http://github.com/whyrusleeping)

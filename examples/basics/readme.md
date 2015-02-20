@@ -1,4 +1,5 @@
 ## Some basics
+
 To get started, we need to make sure ipfs has been initialized,
 if you havent done this yet:
 ```
@@ -78,3 +79,4 @@ $ ipfs get -o cats.png <hashofcatpic>
 This will create a file named 'cats.png' that contains the data from the
 given hash.
 
+By [whyrusleeping](http://github.com/whyrusleeping)
