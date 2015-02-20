@@ -62,19 +62,4 @@ Note: When making your own block data, you wont be able to read the data with
 `ipfs cat`, this is because you are inputting raw data without the unixfs data
 format. To read raw blocks use `ipfs block get` as shown in the example.
 
-### Creating Custom Objects
-The merkledag structure makes it really easy to define your own datastructures
-on top of them. lets take a look at how that is accomplished through the cli.
-
-The easiest way to manually create an object is by defining its structure in
-a json file.
-
-for example:
-```
-{
-	"data": "hello world"
-}
-```
-todo: im stuck here currently, this example is hard to write due to base64 encoding.
-
 By [whyrusleeping](http://github.com/whyrusleeping)
