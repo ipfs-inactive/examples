@@ -82,3 +82,5 @@ Now we need to set up our context and finally build our node!
 	http.ListenAndServe(":8080", nil)
 }
 ```
+
+By [whyrusleeping](http://github.com/whyrusleeping)
