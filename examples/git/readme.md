@@ -22,6 +22,17 @@ $ cd myrepo
 $ git update-server-info
 ```
 
+Optionally, you can unpack all of gits objects:
+```
+$ cp objects/pack/*.pack .
+$ git unpack-objects < ./*.pack
+$ rm ./*.pack
+```
+
+Doing this breaks up gits large packfile into all of its individual objects.
+This will allow ipfs to deduplicate objects if you add multiple versions of
+this git repository.
+
 Once youve done that, that repo is ready to be served. All thats left to do, is
 to add it to ipfs:
 ```
