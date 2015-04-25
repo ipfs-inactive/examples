@@ -40,7 +40,7 @@ So, now comes the fun part: Lets change things.
 $ echo "Look! Things have changed!" | ipfs add
 ```
 
-Next, take the has from there and...
+Next, take the hash from there and...
 ```
 $ ipfs name publish <the new hash>
 Published name <your peer ID> to <the new hash>
