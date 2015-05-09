@@ -2,7 +2,7 @@
 
 The IPFS bootstrap list is a list of peers with which the IPFS daemon learns about other peers on the network. IPFS comes with a default list of trusted peers, but you are free to modify the list to suit your needs. One popular use for a custom bootstrap list is to create a personal IPFS network.
 
-List the IPFS bootstrap list
+First, let's list your node's bootstrap list:
 
 ```
 > ipfs bootstrap list
