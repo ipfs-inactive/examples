@@ -13,10 +13,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/jbenet/go-ipfs/core"
-	"github.com/jbenet/go-ipfs/core/coreunix"
-	"github.com/jbenet/go-ipfs/repo/fsrepo"
-	u "github.com/jbenet/go-ipfs/util"
+	"github.com/ipfs/go-ipfs/core"
+	"github.com/ipfs/go-ipfs/core/coreunix"
+	"github.com/ipfs/go-ipfs/repo/fsrepo"
+	u "github.com/ipfs/go-ipfs/util"
 
 	"code.google.com/p/go.net/context"
 )

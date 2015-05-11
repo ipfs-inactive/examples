@@ -3,7 +3,7 @@ using ipfs within your code is really quite simple!
 
 At its simplest, you only need to create a node:
 ```
-import "github.com/jbenet/go-ipfs/core"
+import "github.com/ipfs/go-ipfs/core"
 .
 .
 .
@@ -17,7 +17,7 @@ a couple different things that I think deserve explanation.
 #### NodeBuilder
 The NodeBuilder is an object following the 'builder' pattern (who would have
 guessed?). It can be used to configure the node before its actually constructed.
-It has a few different setters and other options that we will discuss in a bit. 
+It has a few different setters and other options that we will discuss in a bit.
 
 #### Contexts
 If youve never dealt with contexts before, I highly recommend you first go read
@@ -48,7 +48,7 @@ builder := core.NewNodeBuilder()
 builder.Online()
 ```
 
-A node created in 'Online' mode will start up bootstrapping, bitswap exchange, 
+A node created in 'Online' mode will start up bootstrapping, bitswap exchange,
 and other network interfaces.
 
 #### SetRepo
@@ -59,7 +59,7 @@ datastore. To set your own, call `SetRepo` with your own repo object.
 The normal way to go about doing this is with an `FSRepo`, which represents
 an on disk 'repository'. This looks a bit like:
 ```
-import "github.com/jbenet/go-ipfs/repo/fsrepo"
+import "github.com/ipfs/go-ipfs/repo/fsrepo"
 .
 .
 .
@@ -74,7 +74,7 @@ builder.SetRepo(r)
 #### SetRouting
 ipfs by default will use our DHT network for getting provider information and
 ipns entries. If you wish to implement a separate routing system for your node
-to get this information through, just make an object that implements the 
+to get this information through, just make an object that implements the
 IpfsRouting interface and pass the builder a RoutingOption for it.
 ```
 builder := core.NewNodeBuilder().Online()

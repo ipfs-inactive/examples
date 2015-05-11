@@ -7,9 +7,9 @@ import (
 	"os"
 
 	"code.google.com/p/go.net/context"
-	"github.com/jbenet/go-ipfs/core"
-	"github.com/jbenet/go-ipfs/core/coreunix"
-	"github.com/jbenet/go-ipfs/repo/fsrepo"
+	"github.com/ipfs/go-ipfs/core"
+	"github.com/ipfs/go-ipfs/core/coreunix"
+	"github.com/ipfs/go-ipfs/repo/fsrepo"
 )
 
 func CountChars(r io.Reader) map[byte]int {

@@ -12,16 +12,16 @@ package main
 import (
 	"fmt"
 
-	core "github.com/jbenet/go-ipfs/core"
-	corenet "github.com/jbenet/go-ipfs/core/corenet"
-	fsrepo "github.com/jbenet/go-ipfs/repo/fsrepo"
+	core "github.com/ipfs/go-ipfs/core"
+	corenet "github.com/ipfs/go-ipfs/core/corenet"
+	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
 	"code.google.com/p/go.net/context"
 )
 ```
 
 We dont need too many imports for this.
-Now, the only other thing we need is our main function: 
+Now, the only other thing we need is our main function:
 
 Set up an ipfsnode.
 
@@ -74,7 +74,7 @@ Next, we are going to build our service.
 
 And thats really all you need to write a service on top of ipfs. When a client
 connects, we send them our greeting, print their peer ID to our log, and close
-the session. This is the simplest possible service, and you can really write 
+the session. This is the simplest possible service, and you can really write
 anything you want to handle the connection.
 
 Now we need a client to connect to us:
@@ -87,10 +87,10 @@ import (
 	"io"
 	"os"
 
-	core "github.com/jbenet/go-ipfs/core"
-	corenet "github.com/jbenet/go-ipfs/core/corenet"
-	peer "github.com/jbenet/go-ipfs/p2p/peer"
-	fsrepo "github.com/jbenet/go-ipfs/repo/fsrepo"
+	core "github.com/ipfs/go-ipfs/core"
+	corenet "github.com/ipfs/go-ipfs/core/corenet"
+	peer "github.com/ipfs/go-ipfs/p2p/peer"
+	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
 	"code.google.com/p/go.net/context"
 )
