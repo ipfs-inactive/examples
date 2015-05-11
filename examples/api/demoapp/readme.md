@@ -44,7 +44,7 @@ Alright, now for the ipfs goodness:
 ```
 func SetupIpfs() (*core.IpfsNode, error) {
 	// Assume the user has run 'ipfs init'
-	r := fsrepo.At("~/.go-ipfs")
+	r := fsrepo.At("~/.ipfs")
 	if err := r.Open(); err != nil {
 		return nil, err
 	}

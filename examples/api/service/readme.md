@@ -28,7 +28,7 @@ Set up an ipfsnode.
 ```
 func main() {
 	// Basic ipfsnode setup
-	r := fsrepo.At("~/.go-ipfs")
+	r := fsrepo.At("~/.ipfs")
 	if err := r.Open(); err != nil {
 		panic(err)
 	}
@@ -46,7 +46,7 @@ func main() {
 ```
 
 Thats just the basic template of code to initiate a default ipfsnode from
-the config in the users `~/.go-ipfs` directory.
+the config in the users `~/.ipfs` directory.
 
 Next, we are going to build our service.
 
@@ -106,7 +106,7 @@ func main() {
 	}
 
 	// Basic ipfsnode setup
-	r := fsrepo.At("~/.go-ipfs")
+	r := fsrepo.At("~/.ipfs")
 	if err := r.Open(); err != nil {
 		panic(err)
 	}

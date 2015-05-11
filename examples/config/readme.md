@@ -1,6 +1,6 @@
 ## The ipfs Config File
 ipfs is configured through a json formatted text file, located by default at
-`~/.go-ipfs/config`.
+`~/.ipfs/config`.
 
 ### Addresses
 The config file stores a few different address types, all of which use the

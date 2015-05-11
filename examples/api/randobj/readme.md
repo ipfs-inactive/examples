@@ -55,7 +55,7 @@ func main() {
 Set up our builder, and use the users standard ipfs configuration directory.
 
 ```
-	r := fsrepo.At("~/.go-ipfs")
+	r := fsrepo.At("~/.ipfs")
 	if err := r.Open(); err != nil {
 		panic(err)
 	}

@@ -63,7 +63,7 @@ import "github.com/jbenet/go-ipfs/repo/fsrepo"
 .
 .
 .
-r := fsrepo.At("/path/to/.go-ipfs")
+r := fsrepo.At("/path/to/.ipfs")
 if err := r.Open(); err != nil {
 	// Deal with the error
 }
