@@ -3,17 +3,17 @@ package main
 import (
 	"fmt"
 
-	core "github.com/jbenet/go-ipfs/core"
-	corenet "github.com/jbenet/go-ipfs/core/corenet"
-	fsrepo "github.com/jbenet/go-ipfs/repo/fsrepo"
+	core "github.com/ipfs/go-ipfs/core"
+	corenet "github.com/ipfs/go-ipfs/core/corenet"
+	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
-	"code.google.com/p/go.net/context"
+	"golang.org/x/net/context"
 )
 
 func main() {
 	// Basic ipfsnode setup
-	r := fsrepo.At("~/.go-ipfs")
-	if err := r.Open(); err != nil {
+	r, err := fsrepo.Open("~/.ipfs")
+	if err != nil {
 		panic(err)
 	}
 
@@ -32,7 +32,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("I am peer: %s\n", nd.Identity)
+	fmt.Printf("I am peer: %s\n", nd.Identity.Pretty())
 
 	for {
 		con, err := list.Accept()
