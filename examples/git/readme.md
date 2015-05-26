@@ -65,7 +65,7 @@ import (
 This is a really nice feature, and solves a lot of problems, but often times, I run into
 the issue where im using someones library, and they change the API, and it breaks my code.
 Using what we've done above, you could clone the library, and add it into ipfs, so your import
-paths will now look like:
+paths will now look something like:
 ```go
 import (
 	mylib "gateway.ipfs.io/ipfs/QmX679gmfyaRkKMvPA4WGNWXj9PtpvKWGPgtXaF18etC95"
@@ -73,5 +73,10 @@ import (
 ```
 
 And you will be guaranteed to have the same code every time!
+
+Note: Since go doesnt allow the usage of localhost for import paths, we use the
+public http gateways. This provides no security guarantees as a man in the
+middle attack could ship you bad code. You could use a domain name that redirects
+to the localhost instead to avoid the issue.
 
 By [whyrusleeping](http://github.com/whyrusleeping)
