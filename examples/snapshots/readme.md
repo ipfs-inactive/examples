@@ -19,6 +19,11 @@ $ echo `ipfs add -q -r ~/code/myproject | tail -n1` `date` >> snapshots
 (Note: the `-q` makes the output only contain the hashes, piping through
 `tail -n1` ensures only the hash of the top folder is output.)
 
+Make sure to have the placeholders for the mount points:
+```
+$ sudo mkdir /ipfs /ipns
+$ sudo chown `whoami` /ipfs /ipns
+```
 
 View the snapshots live:
 ```
