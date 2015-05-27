@@ -13,10 +13,10 @@ recursively by default.
 ```
 echo "ipfs rocks" > foo
 ipfs add foo
-ipfs pin ls -type=all
+ipfs pin ls --type=all
 ipfs pin rm <foo hash>
 ipfs pin rm -r <foo hash>
-ipfs pin ls -type=all
+ipfs pin ls --type=all
 ```
 
 As you may have noticed, the first `ipfs pin rm` command didnt work, it should
