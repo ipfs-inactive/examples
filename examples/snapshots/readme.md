@@ -25,6 +25,9 @@ $ sudo mkdir /ipfs /ipns
 $ sudo chown `whoami` /ipfs /ipns
 ```
 
+You will need to have `Fuse` installed on your machine in order to be able to `mount` directories from the ipfs. You can find instructions of how to [install `Fuse` in the `go-ipfs` docs](https://github.com/ipfs/go-ipfs/blob/master/docs/fuse.md)
+
+
 View the snapshots live:
 ```
 $ ipfs mount
