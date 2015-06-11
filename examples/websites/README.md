@@ -44,7 +44,7 @@ Published to <your peer id>: /ipfs/$SITE_HASH
 ```
 
 Now, you can test that it worked by viewing: `http://localhost:8080/ipns/<your peer id>`.
-And also try the same link on the public gateway. Once youre convinced that works,
+And also try the same link on the public gateway. Once you're convinced that works,
 lets again hide the hash. Change your DNS TXT record to `dnslink=/ipns/<your peer id>`,
 wait for that record to propogate, and then try accessing `http://localhost:8080/ipns/your.domain`.
 
