@@ -16,7 +16,7 @@ func main() {
 
 	// Basic IPFS Node setup
 	r, err := fsrepo.Open("~/.ipfs")
-	if err!=nil {
+	if err != nil {
 	  panic(err)
 	}
 
@@ -30,7 +30,7 @@ func main() {
 		panic(err)
 	}
 
-	list, err := corenet.Listen(nd, "/app/zero")
+	list, err := corenet.Listen(nd, "/app/path")
 	if err != nil {
 		panic(err)
 	}
@@ -45,7 +45,7 @@ func main() {
 		}
 		defer con.Close()
 
-		fmt.Fprintln(con, "ZERO IPFS service. Nothing to see here.")
+		fmt.Fprintln(con, "Hello, this is the IPFS service!")
 		fmt.Printf("Connection from: %s\n", con.Conn().RemotePeer())
 	}
 }

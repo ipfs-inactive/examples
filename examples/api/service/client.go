@@ -18,6 +18,7 @@ func main() {
 
 	if len(os.Args) < 2 {
 		fmt.Println("Please give peer ID as an argument")
+		return
 	}
 
 	target, err := peer.IDB58Decode(os.Args[1])
@@ -44,7 +45,7 @@ func main() {
 
 	fmt.Printf("I am peer %s dialing %s\n", nd.Identity, target)
 
-	con, err := corenet.Dial(nd, target, "/app/zero")
+	con, err := corenet.Dial(nd, target, "/app/path")
 	if err != nil {
 		fmt.Println(err)
 		return
