@@ -9,7 +9,7 @@ import (
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 	peer "github.com/ipfs/go-ipfs/p2p/peer"
 
-	"code.google.com/p/go.net/context"
+	"golang.org/x/net/context"
 )
 
 func main() {
@@ -45,7 +45,7 @@ func main() {
 		}
 		defer con.Close()
 
-		fmt.Fprintln(con, "Hello, this is the IPFS service!")
+		fmt.Fprintln(con, "Hello, this is whyrusleepings awesome ipfs service")
 		fmt.Printf("Connection from: %s\n", con.Conn().RemotePeer())
 	}
 }

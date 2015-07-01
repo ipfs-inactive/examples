@@ -11,13 +11,13 @@ import (
 	peer "github.com/ipfs/go-ipfs/p2p/peer"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
-	"code.google.com/p/go.net/context"
+	"golang.org/x/net/context"
 )
 
 func main() {
 
 	if len(os.Args) < 2 {
-		fmt.Println("Please give peer ID as an argument")
+		fmt.Println("Please give a peer ID as an argument")
 		return
 	}
 
