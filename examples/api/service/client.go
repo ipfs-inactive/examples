@@ -1,6 +1,7 @@
 package main
 
 import (
+
 	"fmt"
 	"io"
 	"os"
@@ -10,20 +11,21 @@ import (
 	peer "github.com/ipfs/go-ipfs/p2p/peer"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
-	"golang.org/x/net/context"
+	"code.google.com/p/go.net/context"
 )
 
 func main() {
+
 	if len(os.Args) < 2 {
-		fmt.Println("Please give a peer ID as an argument")
-		return
+		fmt.Println("Please give peer ID as an argument")
 	}
+
 	target, err := peer.IDB58Decode(os.Args[1])
 	if err != nil {
+		fmt.Println("Invalid peer ID")
 		panic(err)
 	}
 
-	// Basic ipfsnode setup
 	r, err := fsrepo.Open("~/.ipfs")
 	if err != nil {
 		panic(err)
@@ -42,11 +44,12 @@ func main() {
 
 	fmt.Printf("I am peer %s dialing %s\n", nd.Identity, target)
 
-	con, err := corenet.Dial(nd, target, "/app/whyrusleeping")
+	con, err := corenet.Dial(nd, target, "/app/zero")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	io.Copy(os.Stdout, con)
+
 }

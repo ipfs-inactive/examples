@@ -10,6 +10,7 @@ Lets start by building the service host:
 package main
 
 import (
+
 	"fmt"
 
 	core "github.com/ipfs/go-ipfs/core"
@@ -27,19 +28,19 @@ Set up an ipfsnode.
 
 ```
 func main() {
-	// Basic ipfsnode setup
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
-		panic(err)
+
+	// Basic IPFS Node setup
+	r, err := fsrepo.Open("~/.ipfs")
+	if err!=nil {
+	  panic(err)
 	}
 
-	nb := core.NewNodeBuilder().Online()
-	nb.SetRepo(r)
+	nb := core.Online(r)
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	nd, err := nb.Build(ctx)
+	nd, err := core.NewIPFSNode(ctx, nb)
 	if err != nil {
 		panic(err)
 	}
@@ -52,11 +53,12 @@ Next, we are going to build our service.
 
 ```
 
-	list, err := corenet.Listen(nd, "/app/whyrusleeping")
+	list, err := corenet.Listen(nd, "/app/zero")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("I am peer: %s\n", nd.Identity)
+
+	fmt.Printf("I am peer %s\n", peer.IDB58Encode(nd.Identity))
 
 	for {
 		con, err := list.Accept()
@@ -66,7 +68,7 @@ Next, we are going to build our service.
 		}
 		defer con.Close()
 
-		fmt.Fprintln(con, "Hello! This is whyrusleepings awesome ipfs service")
+		fmt.Fprintln(con, "ZERO IPFS service. Nothing to see here.")
 		fmt.Printf("Connection from: %s\n", con.Conn().RemotePeer())
 	}
 }
@@ -83,6 +85,7 @@ Now we need a client to connect to us:
 package main
 
 import (
+
 	"fmt"
 	"io"
 	"os"
@@ -96,18 +99,19 @@ import (
 )
 
 func main() {
+
 	if len(os.Args) < 2 {
-		fmt.Println("Please give a peer ID as an argument")
-		return
+		fmt.Println("Please give peer ID as an argument")
 	}
+
 	target, err := peer.IDB58Decode(os.Args[1])
 	if err != nil {
+		fmt.Println("Invalid peer ID")
 		panic(err)
 	}
 
-	// Basic ipfsnode setup
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
+	r, err := fsrepo.Open("~/.ipfs")
+	if err != nil {
 		panic(err)
 	}
 
@@ -124,13 +128,14 @@ func main() {
 
 	fmt.Printf("I am peer %s dialing %s\n", nd.Identity, target)
 
-	con, err := corenet.Dial(nd, target, "/app/whyrusleeping")
+	con, err := corenet.Dial(nd, target, "/app/zero")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	io.Copy(os.Stdout, con)
+
 }
 ```
 
