@@ -1,13 +1,12 @@
 package main
 
 import (
-
 	"fmt"
 
 	core "github.com/ipfs/go-ipfs/core"
 	corenet "github.com/ipfs/go-ipfs/core/corenet"
-	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 	peer "github.com/ipfs/go-ipfs/p2p/peer"
+	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
 	"golang.org/x/net/context"
 )
@@ -17,7 +16,7 @@ func main() {
 	// Basic IPFS Node setup
 	r, err := fsrepo.Open("~/.ipfs")
 	if err != nil {
-	  panic(err)
+		panic(err)
 	}
 
 	nb := core.Online(r)
@@ -25,7 +24,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	nd, err := core.NewIPFSNode(ctx, nb)
+	nd, err := nb.Build(ctx)
 	if err != nil {
 		panic(err)
 	}
