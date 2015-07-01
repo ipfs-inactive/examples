@@ -5,20 +5,21 @@ import (
 
 	core "github.com/ipfs/go-ipfs/core"
 	corenet "github.com/ipfs/go-ipfs/core/corenet"
+	peer "github.com/ipfs/go-ipfs/p2p/peer"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
 	"golang.org/x/net/context"
 )
 
 func main() {
-	// Basic ipfsnode setup
+
+	// Basic IPFS Node setup
 	r, err := fsrepo.Open("~/.ipfs")
 	if err != nil {
 		panic(err)
 	}
 
-	nb := core.NewNodeBuilder().Online()
-	nb.SetRepo(r)
+	nb := core.Online(r)
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -28,11 +29,12 @@ func main() {
 		panic(err)
 	}
 
-	list, err := corenet.Listen(nd, "/app/whyrusleeping")
+	list, err := corenet.Listen(nd, "/app/path")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("I am peer: %s\n", nd.Identity.Pretty())
+
+	fmt.Printf("I am peer %s\n", peer.IDB58Encode(nd.Identity))
 
 	for {
 		con, err := list.Accept()
@@ -42,7 +44,7 @@ func main() {
 		}
 		defer con.Close()
 
-		fmt.Fprintln(con, "Hello! This is whyrusleepings awesome ipfs service")
+		fmt.Fprintln(con, "Hello, this is whyrusleepings awesome ipfs service")
 		fmt.Printf("Connection from: %s\n", con.Conn().RemotePeer())
 	}
 }
