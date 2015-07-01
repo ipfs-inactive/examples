@@ -16,8 +16,9 @@ import (
 	core "github.com/ipfs/go-ipfs/core"
 	corenet "github.com/ipfs/go-ipfs/core/corenet"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
+	peer "github.com/ipfs/go-ipfs/p2p/peer"
 
-	"code.google.com/p/go.net/context"
+	"golang.org/x/net/context"
 )
 ```
 
@@ -31,7 +32,7 @@ func main() {
 
 	// Basic IPFS Node setup
 	r, err := fsrepo.Open("~/.ipfs")
-	if err!=nil {
+	if err != nil {
 	  panic(err)
 	}
 
@@ -53,7 +54,7 @@ Next, we are going to build our service.
 
 ```
 
-	list, err := corenet.Listen(nd, "/app/zero")
+	list, err := corenet.Listen(nd, "/app/path")
 	if err != nil {
 		panic(err)
 	}
@@ -68,7 +69,7 @@ Next, we are going to build our service.
 		}
 		defer con.Close()
 
-		fmt.Fprintln(con, "ZERO IPFS service. Nothing to see here.")
+		fmt.Fprintln(con, "Hello, this is whyrusleepings awesome ipfs service")
 		fmt.Printf("Connection from: %s\n", con.Conn().RemotePeer())
 	}
 }
@@ -95,13 +96,14 @@ import (
 	peer "github.com/ipfs/go-ipfs/p2p/peer"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
-	"code.google.com/p/go.net/context"
+	"golang.org/x/net/context"
 )
 
 func main() {
 
 	if len(os.Args) < 2 {
-		fmt.Println("Please give peer ID as an argument")
+		fmt.Println("Please give a peer ID as an argument")
+		return
 	}
 
 	target, err := peer.IDB58Decode(os.Args[1])
@@ -128,7 +130,7 @@ func main() {
 
 	fmt.Printf("I am peer %s dialing %s\n", nd.Identity, target)
 
-	con, err := corenet.Dial(nd, target, "/app/zero")
+	con, err := corenet.Dial(nd, target, "/app/path")
 	if err != nil {
 		fmt.Println(err)
 		return
