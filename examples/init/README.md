@@ -18,6 +18,7 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/ipfs daemon
+Restart=on-failure
 
 [Install]
 WantedBy=multiuser.target
