@@ -15,7 +15,7 @@ note the hash that was output, and publish that hash out to the network:
 
 ```
 $ ipfs name publish <that hash>
-Published name <your peer ID> to <that hash>
+Published to <your peer ID>: <that hash>
 ```
 
 Now, to test that it worked, you could try a couple of different things:
@@ -43,7 +43,7 @@ $ echo "Look! Things have changed!" | ipfs add
 Next, take the hash from there and...
 ```
 $ ipfs name publish <the new hash>
-Published name <your peer ID> to <the new hash>
+Published to <your peer ID>: <the new hash>
 ```
 
 Viola! Now, if you resolve that entry again, you'll see your new object.
