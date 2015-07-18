@@ -14,14 +14,13 @@ For `systemd`, the best approach is to run the daemon in a user session. Here is
 ```systemd
 [Unit]
 Description=IPFS daemon
-After=network.target
 
 [Service]
 ExecStart=/usr/bin/ipfs daemon
 Restart=on-failure
 
 [Install]
-WantedBy=multiuser.target
+WantedBy=default.target
 ```
 
 To run this in your user session, save it as `~/.config/systemd/user/ipfs.service` (creating directories as necessary). Once you run `ipfs init` to create your IPFS settings, you can control the daemon using the following commands:
@@ -31,6 +30,13 @@ To run this in your user session, save it as `~/.config/systemd/user/ipfs.servic
 * `systemctl --user status ipfs` - get status of the daemon
 * `systemctl --user enable ipfs` - enable starting the daemon at boot
 * `systemctl --user disable ipfs` - disable starting the daemon at boot
+
+*Note:* If you want this `--user` service to run at system boot, you must [`enable-linger`](http://www.freedesktop.org/software/systemd/man/loginctl.html) on the account that runs the service:
+
+```
+# loginctl enable-linger [user]
+```
+Read more about `--user` services here: [wiki.archlinux.org:Systemd ](https://wiki.archlinux.org/index.php/Systemd/User#Automatic_start-up_of_systemd_user_instances)
 
 ### `initd`
 
