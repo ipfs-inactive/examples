@@ -26,7 +26,7 @@ no others in relation to it. recursive pins, which pin a given block and all of
 its children, and indirect pins, which are the result of a given blocks parent
 being pinned recursively.
 
-A pinned object cannot be garbage collected, if you dont beleive me try this:
+A pinned object cannot be garbage collected, if you dont believe me try this:
 ```
 ipfs add foo
 ipfs repo gc
