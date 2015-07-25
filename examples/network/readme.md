@@ -1,8 +1,8 @@
 ## Playing With the Network
-Ipfs is all about networking! included are a useful set of commands
+Ipfs is all about networking! Included are a useful set of commands
 to aid in observing that network.
 
-See who youre directly connected to:
+See who you're directly connected to:
 ```
 ipfs swarm peers
 ```
