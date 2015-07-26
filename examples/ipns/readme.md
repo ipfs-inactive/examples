@@ -8,7 +8,7 @@ are quite simple.
 First, you'll need some content to publish:
 
 ```
-$ echo "Let's have some mutable fun" | ipfs add
+$ echo 'Let\'s have some mutable fun!' | ipfs add
 ```
 
 note the hash that was output, and publish that hash out to the network:
@@ -37,7 +37,7 @@ http://gateway.ipfs.io/ipns/<your peer ID>
 So, now comes the fun part: Lets change things.
 
 ```
-$ echo "Look: Things have changed." | ipfs add
+$ echo 'Look! Things have changed!' | ipfs add
 ```
 
 Next, take the hash from there and...
