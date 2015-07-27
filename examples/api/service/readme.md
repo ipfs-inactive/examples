@@ -28,8 +28,8 @@ Set up an ipfsnode.
 ```
 func main() {
 	// Basic ipfsnode setup
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
+	r, err := fsrepo.Open("~/.ipfs")
+	if err != nil {
 		panic(err)
 	}
 
@@ -51,12 +51,11 @@ the config in the users `~/.ipfs` directory.
 Next, we are going to build our service.
 
 ```
-
 	list, err := corenet.Listen(nd, "/app/whyrusleeping")
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("I am peer: %s\n", nd.Identity)
+	fmt.Printf("I am peer: %s\n", nd.Identity.Pretty())
 
 	for {
 		con, err := list.Accept()
@@ -92,7 +91,7 @@ import (
 	peer "github.com/ipfs/go-ipfs/p2p/peer"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
-	"code.google.com/p/go.net/context"
+	"golang.org/x/net/context"
 )
 
 func main() {
@@ -106,8 +105,8 @@ func main() {
 	}
 
 	// Basic ipfsnode setup
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
+	r, err := fsrepo.Open("~/.ipfs")
+	if err != nil {
 		panic(err)
 	}
 
