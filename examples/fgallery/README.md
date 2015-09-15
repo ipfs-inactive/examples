@@ -9,7 +9,7 @@ http://www.thregr.org/~wavexx/software/fgallery/
 Fgallery reqires a few dependencies to work, on Ubuntu 14.04 I needed:
 
 ```
-Perl, with the following modulesi (which can be installed from CPAN):
+Perl, with the following modules (which can be installed from CPAN):
    Image::ExifTool
    JSON
 
@@ -20,17 +20,19 @@ exiftran
 
 ## Building the gallery
 
-Fistly, you'll need to prepare a directory with your images in. Make a note of where it's located on the file system.
+Fistly, you'll need to prepare a directory with your images in, you can either make your own or use the demo one provided. Make a note of where it's located on the file system.
 
 The latest version of fgallery can be downloaded from their website, unzip the archive and change directory into the extracted folder.
 
 Run:
 
 ```
-./fgallery /directory/to/images /output/location
+./fgallery /demo /gallery
 ```
 
-Output location can be anywhere on your system you want. Fgallery will then start processing images and building all the static files in the output directory:
+You'll need to give the full path to where you placed the demo folder.
+
+Fgallery will then start processing images and building all the static files in the output directory:
 
 ```
 reading completed
@@ -44,7 +46,7 @@ completed
 Putting the images online is done with just one command:
 
 ```
-ipfs add -r /output/location
+ipfs add -r /gallery
 ```
 
 Obviously replacing /output/location with the location you asked fgallery to output the files to.
