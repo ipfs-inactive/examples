@@ -106,6 +106,7 @@ Similar to `systemd`, on OS X you can run `go-ipfs` via a user LaunchAgent.
 </dict>
 </plist>
 ```
+The reason for running `ipfs` under a shell is to avoid needing to hard-code the user's home directory in the job.
 
 - To start the job, run `launchctl load ~/Library/LaunchAgents/io.ipfs.go-ipfs.plist`
 - To check that the job is running, run `launchctl list | grep ipfs`
