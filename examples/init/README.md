@@ -1,6 +1,6 @@
 ## init system integration
 
-go-ipfs can be started by your operating system's native init system
+go-ipfs can be started by your operating system's native init system.
 
 - [systemd](#systemd)
 - [initd](#initd)
