@@ -1,13 +1,12 @@
 ## init system integration
 
-go-ipfs is relatively simple to integrate into your init system. 
+go-ipfs can be started by your operating system's native init system
 
-Below are instructions for various systems:
+- [systemd](#systemd)
+- [initd](#initd)
+- [launchd](#launchd)
 
-- `systemd`
-- `initd`
-
-### `systemd`
+### systemd
 
 For `systemd`, the best approach is to run the daemon in a user session. Here is a sample service file:
 
@@ -38,7 +37,7 @@ To run this in your user session, save it as `~/.config/systemd/user/ipfs.servic
 ```
 Read more about `--user` services here: [wiki.archlinux.org:Systemd ](https://wiki.archlinux.org/index.php/Systemd/User#Automatic_start-up_of_systemd_user_instances)
 
-### `initd`
+### initd
 
 - Here is a full-featured sample service file: https://github.com/dylanPowers/ipfs-linux-service/blob/master/init.d/ipfs
 - And below is a very basic sample service file. **Note the username jbenet**.
@@ -78,3 +77,37 @@ sudo service ipfs stop
 sudo service ipfs restart
 ...
 ```
+
+## launchd
+
+Similar to `systemd`, on OS X you can run `go-ipfs` via a user LaunchAgent.
+
+- Create `~/Library/LaunchAgents/io.ipfs.go-ipfs.plist`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>KeepAlive</key>
+        <true/>
+        <key>Label</key>
+        <string>io.ipfs.go-ipfs</string>
+        <key>ProcessType</key>
+        <string>Background</string>
+        <key>ProgramArguments</key>
+        <array>
+                <string>/bin/sh</string>
+                <string>-c</string>
+                <string>~/go/bin/ipfs daemon</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+</dict>
+</plist>
+```
+
+- To start the job, run `launchctl load ~/Library/LaunchAgents/io.ipfs.go-ipfs.plist`
+- To check that the job is running, run `launchctl list | grep ipfs`
+
+Note: there is a GUI tool, [LaunchControl](http://www.soma-zone.com/LaunchControl/), which makes management of LaunchAgents much simpler.
