@@ -11,7 +11,7 @@ First, you'll need some content to publish:
 $ echo 'Let\'s have some mutable fun!' | ipfs add
 ```
 
-note the hash that was output, and publish that hash out to the network:
+Note the hash that was output, and publish that hash out to the network:
 
 ```
 $ ipfs name publish <that hash>
@@ -53,7 +53,7 @@ Now, there are a few things to note; first, right now, you can only
 publish a single entry per ipfs node. This will change fairly soon. Second,
 updating an ipns entry can "break links" because anything referencing an ipns
 entry might no longer point to the content it expected. There is no way around 
-this ( you know, mutability ), therefore, ipns links should be used carefully if
+this (you know, mutability), therefore, ipns links should be used carefully if
 you want to ensure permanence. In the future, we may have ipns entries work as
 a git commit chain, with each successive entry pointing back in time to other
 values.

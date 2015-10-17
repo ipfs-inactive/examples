@@ -20,7 +20,7 @@ guessed?). It can be used to configure the node before its actually constructed.
 It has a few different setters and other options that we will discuss in a bit.
 
 #### Contexts
-If youve never dealt with contexts before, I highly recommend you first go read
+If you've never dealt with contexts before, I highly recommend you first go read
 [this wonderful explanation](https://blog.golang.org/context). Now, the context
 we pass into `Build` is the "master" context to the entire ipfs node, cancelling
 that context will shut down every single subprocess that ipfs runs.
