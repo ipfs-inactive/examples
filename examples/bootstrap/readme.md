@@ -19,16 +19,16 @@ First, let's list your node's bootstrap list:
 
 The lines listed above are the addresses of the default IPFS bootstrap nodes -- they are run by the IPFS development team. The addresses listed are fully resolved and specified in [multiaddr](https://github.com/jbenet/multiaddr) format, which makes every protocol explicit. This way, your node knows exactly where to reach the bootstrap nodes -- the location is unambiguous.
 
-Don't change this list unless you understand what it means to do so. Bootstrapping is an important security point of failure in distributed systems: malicious bootstrap peers could only introduce you to other malicious peers. It is recommended to keep the default list provided by the IPFS dev team, or -- in the case of setting up private networks -- a list of nodes you control. Don't add peers to this list that you don't trust.
+Don't change this list unless you understand what it means to do so. Bootstrapping is an important security point of failure in distributed systems: malicious bootstrap peers could introduce you to only other malicious peers. It is recommended to keep the default list provided by the IPFS dev team, or -- in the case of setting up private networks -- a list of nodes you control. Don't add peers to this list that you don't trust.
 
 Here we add a new peer to the bootstrap list:
 ```
-> ipfs add /ip4/25.196.147.100/tcp/4001/ipfs/QmaMqSwWShsPg2RbredZtoneFjXhim7AQkqbLxib45Lx4S
+> ipfs bootstrap add /ip4/25.196.147.100/tcp/4001/ipfs/QmaMqSwWShsPg2RbredZtoneFjXhim7AQkqbLxib45Lx4S
 ```
 
 Here we remove a node from the bootstrap list:
 ```
-> ipfs rm /ip4/128.199.219.111/tcp/4001/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu
+> ipfs bootstrap rm /ip4/128.199.219.111/tcp/4001/ipfs/QmSoLSafTMBsPKadTEgaXctDQVcqN88CNLHXMkTNwMKPnu
 ```
 
 Let's say we want to create a backup of our new bootstrap list. We can easily do this by redirecting stdout of `ipfs bootstrap list` to a file:

@@ -6,7 +6,7 @@ ipfs can be used to store and play videos. Suppose we add a video:
 ipfs add -q sintel.mp4 | tail -n1
 ```
 
-Take the resulting hash, You can view it a couple different ways:
+Take the resulting hash, you can view it a couple different ways:
 
 On the command line:
 ```
