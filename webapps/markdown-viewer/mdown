@@ -57,6 +57,10 @@ if (hash.length > 0) {
   window.location.hash = "#sample.md"
   window.location.reload()
 }
+
+window.onhashchange = function(){
+  window.location.reload()
+}
 </script>
 </body>
 </html>
