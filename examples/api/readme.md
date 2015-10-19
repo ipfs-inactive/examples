@@ -36,17 +36,11 @@ options.
 First lets create the configuration. The easiest way to do this is:
 
 ```
-cfg := new(core.BuildCfg)
-```
-
-Now we can change some of the configuration options.
-
-#### Online
-
-Lets change the configuration so the node will go 'Online' by calling
-
-```
-cfg.Online = true
+cfg := &core.BuildCfg {
+    Repo: r,
+    Online: true,
+    Routing: myRoutingOption,
+}
 ```
 
 A node created in 'Online' mode will start up bootstrapping, bitswap exchange,

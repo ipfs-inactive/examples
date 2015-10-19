@@ -33,14 +33,13 @@ func main() {
         panic(err)
     }
 
-    cfg := new(core.BuildCfg)
+    ctx, cancel := context.WithCancel(context.Background())
+    defer cancel()
 
-    if cfg.Online {
-        fmt.Printf("Boe!\n")
+    cfg := &core.BuildCfg {
+        Repo: r,
+        Online: true,
     }
-
-    cfg.Repo = r
-    cfg.Online = true
 
     nd, err := core.NewNode(ctx, cfg)
 
@@ -114,9 +113,15 @@ func main() {
         panic(err)
     }
 
-    cfg := new(core.BuildCfg)
-    cfg.Repo = r
-    cfg.Online = true
+    ctx, cancel := context.WithCancel(context.Background())
+    defer cancel()
+
+    cfg := &core.BuildCfg {
+        Repo: r,
+        Online: true,
+    }
+
+    nd, err := core.NewNode(ctx, cfg)
 
     if err != nil {
         panic(err)

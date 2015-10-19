@@ -20,9 +20,10 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	cfg := new(core.BuildCfg)
-	cfg.Repo = r
-	cfg.Online = true
+	cfg := &core.BuildCfg {
+		Repo: r,
+		Online: true,
+	}
 
 	nd, err := core.NewNode(ctx, cfg)
 
