@@ -1,54 +1,54 @@
 package main
 
 import (
-    "fmt"
-    "io"
-    "os"
+	"fmt"
+	"io"
+	"os"
 
-    core "github.com/ipfs/go-ipfs/core"
-    corenet "github.com/ipfs/go-ipfs/core/corenet"
-    peer "github.com/ipfs/go-ipfs/p2p/peer"
-    fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
+	core "github.com/ipfs/go-ipfs/core"
+	corenet "github.com/ipfs/go-ipfs/core/corenet"
+	peer "github.com/ipfs/go-ipfs/p2p/peer"
+	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
-    "golang.org/x/net/context"
+	"golang.org/x/net/context"
 )
 
 func main() {
-    if len(os.Args) < 2 {
-        fmt.Println("Please give a peer ID as an argument")
-        return
-    }
-    target, err := peer.IDB58Decode(os.Args[1])
-    if err != nil {
-        panic(err)
-    }
+	if len(os.Args) < 2 {
+		fmt.Println("Please give a peer ID as an argument")
+		return
+	}
+	target, err := peer.IDB58Decode(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
 
-    // Basic ipfsnode setup
-    r, err := fsrepo.Open("~/.ipfs")
-    if err != nil {
-        panic(err)
-    }
+	// Basic ipfsnode setup
+	r, err := fsrepo.Open("~/.ipfs")
+	if err != nil {
+		panic(err)
+	}
 
-    ctx, cancel := context.WithCancel(context.Background())
-    defer cancel()
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
 
-    cfg := new(core.BuildCfg)
-    cfg.Repo = r
-    cfg.Online = true
+	cfg := new(core.BuildCfg)
+	cfg.Repo = r
+	cfg.Online = true
 
-    nd, err := core.NewNode(ctx, cfg)
+	nd, err := core.NewNode(ctx, cfg)
 
-    if err != nil {
-        panic(err)
-    }
+	if err != nil {
+		panic(err)
+	}
 
-    fmt.Printf("I am peer %s dialing %s\n", nd.Identity, target)
+	fmt.Printf("I am peer %s dialing %s\n", nd.Identity, target)
 
-    con, err := corenet.Dial(nd, target, "/app/whyrusleeping")
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
+	con, err := corenet.Dial(nd, target, "/app/whyrusleeping")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
-    io.Copy(os.Stdout, con)
+	io.Copy(os.Stdout, con)
 }
