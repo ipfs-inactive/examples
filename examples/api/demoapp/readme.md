@@ -10,15 +10,15 @@ To Start off, lets get some imports:
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"io"
-	"os"
+    "bufio"
+    "fmt"
+    "io"
+    "os"
 
-	"github.com/ipfs/go-ipfs/core"
-	"github.com/ipfs/go-ipfs/core/coreunix"
-	"github.com/ipfs/go-ipfs/repo/fsrepo"
-	"code.google.com/p/go.net/context"
+    "github.com/ipfs/go-ipfs/core"
+    "github.com/ipfs/go-ipfs/core/coreunix"
+    "github.com/ipfs/go-ipfs/repo/fsrepo"
+    "code.google.com/p/go.net/context"
 )
 ```
 
@@ -27,15 +27,15 @@ Now, lets make a quick function to do a frequency count on characters:
 
 ```
 func CountChars(r io.Reader) map[byte]int {
-	m := make(map[byte]int)
-	buf := bufio.NewReader(r)
-	for {
-		b, err := buf.ReadByte()
-		if err != nil {
-			return m
-		}
-		m[b]++
-	}
+    m := make(map[byte]int)
+    buf := bufio.NewReader(r)
+    for {
+        b, err := buf.ReadByte()
+        if err != nil {
+            return m
+        }
+        m[b]++
+    }
 }
 ```
 
@@ -43,14 +43,17 @@ Alright, now for the ipfs goodness:
 
 ```
 func SetupIpfs() (*core.IpfsNode, error) {
-	// Assume the user has run 'ipfs init'
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
-		return nil, err
-	}
+    // Assume the user has run 'ipfs init'
+    r, err := fsrepo.Open("~/.ipfs")
+    if err != nil {
+        return nil, err
+    }
 
-	builder := core.NewNodeBuilder().Online().SetRepo(r)
-	return builder.Build(context.Background())
+    cfg := new(core.BuildCfg)
+    cfg.Repo = r
+    cfg.Online = true
+
+    return core.NewNode(context.Background(), cfg)
 }
 ```
 
@@ -59,25 +62,25 @@ doing something.
 
 ```
 func main() {
-	nd, err := SetupIpfs()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+    nd, err := SetupIpfs()
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
 
-	if len(os.Args) < 2 {
-		fmt.Println("Please pass in an argument!")
-		return
-	}
-	keytofetch := os.Args[1]
+    if len(os.Args) < 2 {
+        fmt.Println("Please pass in an argument!")
+        return
+    }
+    keytofetch := os.Args[1]
 
-	read, err := coreunix.Cat(nd, keytofetch)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+    read, err := coreunix.Cat(nd, keytofetch)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
 
-	fmt.Println(CountChars(read))
+    fmt.Println(CountChars(read))
 }
 ```
 

@@ -6,18 +6,15 @@ At its simplest, you only need to create a node:
 import "github.com/ipfs/go-ipfs/core"
 .
 .
+// setup ctx
+// setup cfg
 .
-builder := core.NewNodeBuilder()
-node, err := builder.Build(ctx)
+
+node, err := core.NewNode(ctx, cfg)
 ```
 
 The above code snippet is the simplest way to create an ipfs node. There are
 a couple different things that I think deserve explanation.
-
-#### NodeBuilder
-The NodeBuilder is an object following the 'builder' pattern (who would have
-guessed?). It can be used to configure the node before its actually constructed.
-It has a few different setters and other options that we will discuss in a bit.
 
 #### Contexts
 If youve never dealt with contexts before, I highly recommend you first go read
@@ -32,20 +29,24 @@ ctx, cancel := context.WithCancel(context.Background)
 This creates a context, and an anonymous function that can be called to cancel
 the context, and by extension, all of the ipfs node.
 
-### Ipfs Options
+### Ipfs Configuration Options
 So, now that all of that is out of the way, lets look at different configuration
 options.
 
-#### Online/Offline
-The default state for a nodebuilder is 'Offline', so set it to 'Online' simply
-call the `Online()` method.
+First lets create the configuration. The easiest way to do this is:
+
 ```
-builder := core.NewNodeBuilder().Online()
+cfg := new(core.BuildCfg)
 ```
-Or:
+
+Now we can change some of the configuration options.
+
+#### Online
+
+Lets change the configuration so the node will go 'Online' by calling
+
 ```
-builder := core.NewNodeBuilder()
-builder.Online()
+cfg.Online = true
 ```
 
 A node created in 'Online' mode will start up bootstrapping, bitswap exchange,
@@ -63,12 +64,12 @@ import "github.com/ipfs/go-ipfs/repo/fsrepo"
 .
 .
 .
-r := fsrepo.At("/path/to/.ipfs")
-if err := r.Open(); err != nil {
+r := fsrepo.Open("/path/to/.ipfs")
+if err != nil {
 	// Deal with the error
 }
 
-builder.SetRepo(r)
+cfg.Repo = r
 ```
 
 #### SetRouting
@@ -77,7 +78,7 @@ ipns entries. If you wish to implement a separate routing system for your node
 to get this information through, just make an object that implements the
 IpfsRouting interface and pass the builder a RoutingOption for it.
 ```
-builder := core.NewNodeBuilder().Online()
-builder.SetRouting(myRoutingOption)
+cfg.Routing = myRoutingOption
 ```
+
 

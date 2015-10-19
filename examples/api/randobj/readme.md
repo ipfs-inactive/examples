@@ -9,16 +9,16 @@ First, lets get some imports:
 package main
 
 import (
-	"io"
-	"net/http"
-	"os"
+    "io"
+    "net/http"
+    "os"
 
-	"github.com/ipfs/go-ipfs/core"
-	"github.com/ipfs/go-ipfs/core/coreunix"
-	"github.com/ipfs/go-ipfs/repo/fsrepo"
-	u "github.com/ipfs/go-ipfs/util"
+    "github.com/ipfs/go-ipfs/core"
+    "github.com/ipfs/go-ipfs/core/coreunix"
+    "github.com/ipfs/go-ipfs/repo/fsrepo"
+    u "github.com/ipfs/go-ipfs/util"
 
-	"code.google.com/p/go.net/context"
+    "code.google.com/p/go.net/context"
 )
 ```
 
@@ -33,15 +33,15 @@ Now, lets write the http handler func for generating our random objects.
 
 ```
 func ServeIpfsRand(w http.ResponseWriter, r *http.Request) {
-	read := io.LimitReader(u.NewTimeSeededRand(), 2048)
+    read := io.LimitReader(u.NewTimeSeededRand(), 2048)
 
-	str, err := coreunix.Add(gnode, read)
-	if err != nil {
-		w.WriteHeader(504)
-		w.Write([]byte(err.Error()))
-	} else {
-		w.Write([]byte(str))
-	}
+    str, err := coreunix.Add(gnode, read)
+    if err != nil {
+        w.WriteHeader(504)
+        w.Write([]byte(err.Error()))
+    } else {
+        w.Write([]byte(str))
+    }
 }
 ```
 
@@ -49,37 +49,37 @@ And now, lets tie it all together in a main function.
 
 ```
 func main() {
-	builder := core.NewNodeBuilder().Online()
+    cfg := new(core.BuildCfg)
 ```
 
-Set up our builder, and use the users standard ipfs configuration directory.
+Set up our node configuration, and use the users standard ipfs configuration directory.
 
 ```
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
-		panic(err)
-	}
+    r, err := fsrepo.Open("~/.ipfs")
+    if err != nil {
+        panic(err)
+    }
 
-	builder.SetRepo(r)
+    cfg.Repo = r
 ```
 
 Now we need to set up our context and finally build our node!
 
 ```
-	// Make our 'master' context and defer cancelling it
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+    // Make our 'master' context and defer cancelling it
+    ctx, cancel := context.WithCancel(context.Background())
+    defer cancel()
 
-	node, err := builder.Build(ctx)
-	if err != nil {
-		panic(err)
-	}
+    node, err := core.NewNode(ctx, cfg)
+    if err != nil {
+        panic(err)
+    }
 
-	// Set the global node for access in the handler
-	gnode = node
+    // Set the global node for access in the handler
+    gnode = node
 
-	http.HandleFunc("/ipfsobject", ServeIpfsRand)
-	http.ListenAndServe(":8080", nil)
+    http.HandleFunc("/ipfsobject", ServeIpfsRand)
+    http.ListenAndServe(":8080", nil)
 }
 ```
 
