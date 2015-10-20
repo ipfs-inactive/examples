@@ -19,10 +19,10 @@ The above code snippet is the simplest way to create an ipfs node. Below is expl
 Lets create a Node's build configuration:
 
 ```
-cfg := &core.BuildCfg {
-    Repo:    r,
-    Online:  true,
-    Routing: myRoutingOption,
+cfg := &core.BuildCfg{
+	Repo:    r,
+	Online:  true,
+	Routing: myRoutingOption,
 }
 ```
 
@@ -43,7 +43,7 @@ import "github.com/ipfs/go-ipfs/repo/fsrepo"
 .
 r := fsrepo.Open("/path/to/.ipfs")
 if err != nil {
-    // Deal with the error
+	// Deal with the error
 }
 ```
 
