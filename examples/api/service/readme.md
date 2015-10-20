@@ -37,7 +37,7 @@ func main() {
     defer cancel()
 
     cfg := &core.BuildCfg {
-        Repo: r,
+        Repo:   r,
         Online: true,
     }
 
@@ -117,7 +117,7 @@ func main() {
     defer cancel()
 
     cfg := &core.BuildCfg {
-        Repo: r,
+        Repo:   r,
         Online: true,
     }
 

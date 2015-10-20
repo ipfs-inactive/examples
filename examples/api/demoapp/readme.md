@@ -50,7 +50,7 @@ func SetupIpfs() (*core.IpfsNode, error) {
     }
 
     cfg := &core.BuildCfg {
-        Repo: r,
+        Repo:   r,
         Online: true,
     }
 

@@ -69,7 +69,7 @@ Then create a configuration and finally create our node!
 
 ```
     cfg := &core.BuildCfg {
-        Repo: r,
+        Repo:   r,
         Online: true,
     }
 
