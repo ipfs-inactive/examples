@@ -15,10 +15,10 @@ import (
 	"io"
 	"os"
 
+	"code.google.com/p/go.net/context"
 	"github.com/ipfs/go-ipfs/core"
 	"github.com/ipfs/go-ipfs/core/coreunix"
 	"github.com/ipfs/go-ipfs/repo/fsrepo"
-	"code.google.com/p/go.net/context"
 )
 ```
 
@@ -44,13 +44,21 @@ Alright, now for the ipfs goodness:
 ```
 func SetupIpfs() (*core.IpfsNode, error) {
 	// Assume the user has run 'ipfs init'
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
+	r, err := fsrepo.Open("~/.ipfs")
+	if err != nil {
 		return nil, err
 	}
 
-	builder := core.NewNodeBuilder().Online().SetRepo(r)
-	return builder.Build(context.Background())
+	cfg := &core.BuildCfg{
+		Repo:   r,
+		Online: true,
+	}
+
+	cfg := new(core.BuildCfg)
+	cfg.Repo = r
+	cfg.Online = true
+
+	return core.NewNode(context.Background(), cfg)
 }
 ```
 

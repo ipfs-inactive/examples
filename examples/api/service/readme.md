@@ -33,13 +33,16 @@ func main() {
 		panic(err)
 	}
 
-	nb := core.NewNodeBuilder().Online()
-	nb.SetRepo(r)
-
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	nd, err := nb.Build(ctx)
+	cfg := &core.BuildCfg{
+		Repo:   r,
+		Online: true,
+	}
+
+	nd, err := core.NewNode(ctx, cfg)
+
 	if err != nil {
 		panic(err)
 	}
@@ -55,6 +58,7 @@ Next, we are going to build our service.
 	if err != nil {
 		panic(err)
 	}
+
 	fmt.Printf("I am peer: %s\n", nd.Identity.Pretty())
 
 	for {
@@ -63,6 +67,7 @@ Next, we are going to build our service.
 			fmt.Println(err)
 			return
 		}
+
 		defer con.Close()
 
 		fmt.Fprintln(con, "Hello! This is whyrusleepings awesome ipfs service")
@@ -110,13 +115,16 @@ func main() {
 		panic(err)
 	}
 
-	nb := core.NewNodeBuilder().Online()
-	nb.SetRepo(r)
-
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	nd, err := nb.Build(ctx)
+	cfg := &core.BuildCfg{
+		Repo:   r,
+		Online: true,
+	}
+
+	nd, err := core.NewNode(ctx, cfg)
+
 	if err != nil {
 		panic(err)
 	}

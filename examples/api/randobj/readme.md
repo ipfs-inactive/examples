@@ -47,30 +47,33 @@ func ServeIpfsRand(w http.ResponseWriter, r *http.Request) {
 
 And now, lets tie it all together in a main function.
 
+Set up our node configuration, and use the users standard ipfs configuration directory.
+
 ```
 func main() {
-	builder := core.NewNodeBuilder().Online()
-```
-
-Set up our builder, and use the users standard ipfs configuration directory.
-
-```
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
+	r, err := fsrepo.Open("~/.ipfs")
+	if err != nil {
 		panic(err)
 	}
-
-	builder.SetRepo(r)
 ```
 
-Now we need to set up our context and finally build our node!
+Now we need to set up our context
 
 ```
 	// Make our 'master' context and defer cancelling it
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
+```
 
-	node, err := builder.Build(ctx)
+Then create a configuration and finally create our node!
+
+```
+	cfg := &core.BuildCfg{
+		Repo:   r,
+		Online: true,
+	}
+
+	node, err := core.NewNode(ctx, cfg)
 	if err != nil {
 		panic(err)
 	}

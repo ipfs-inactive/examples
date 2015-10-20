@@ -6,10 +6,10 @@ import (
 	"io"
 	"os"
 
-	"code.google.com/p/go.net/context"
 	"github.com/ipfs/go-ipfs/core"
 	"github.com/ipfs/go-ipfs/core/coreunix"
 	"github.com/ipfs/go-ipfs/repo/fsrepo"
+	"golang.org/x/net/context"
 )
 
 func CountChars(r io.Reader) map[byte]int {
@@ -26,13 +26,17 @@ func CountChars(r io.Reader) map[byte]int {
 
 func SetupIpfs() (*core.IpfsNode, error) {
 	// Assume the user has run 'ipfs init'
-	r := fsrepo.At("~/.ipfs")
-	if err := r.Open(); err != nil {
+	r, err := fsrepo.Open("~/.ipfs")
+	if err != nil {
 		return nil, err
 	}
 
-	builder := core.NewNodeBuilder().Online().SetRepo(r)
-	return builder.Build(context.Background())
+	cfg := &core.BuildCfg{
+		Repo:   r,
+		Online: true,
+	}
+
+	return core.NewNode(context.Background(), cfg)
 }
 
 func main() {
@@ -48,7 +52,7 @@ func main() {
 	}
 	keytofetch := os.Args[1]
 
-	read, err := coreunix.Cat(nd, keytofetch)
+	read, err := coreunix.Cat(context.Background(), nd, keytofetch)
 	if err != nil {
 		fmt.Println(err)
 		return

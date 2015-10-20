@@ -6,52 +6,30 @@ At its simplest, you only need to create a node:
 import "github.com/ipfs/go-ipfs/core"
 .
 .
+// setup ctx
+// setup cfg
 .
-builder := core.NewNodeBuilder()
-node, err := builder.Build(ctx)
+
+node, err := core.NewNode(ctx, cfg)
 ```
 
-The above code snippet is the simplest way to create an ipfs node. There are
-a couple different things that I think deserve explanation.
+The above code snippet is the simplest way to create an ipfs node. Below is explained how to get the context and the configuration objects in place.
 
-#### NodeBuilder
-The NodeBuilder is an object following the 'builder' pattern (who would have
-guessed?). It can be used to configure the node before its actually constructed.
-It has a few different setters and other options that we will discuss in a bit.
+### Configuration
+Lets create a Node's build configuration:
 
-#### Contexts
-If youve never dealt with contexts before, I highly recommend you first go read
-[this wonderful explanation](https://blog.golang.org/context). Now, the context
-we pass into `Build` is the "master" context to the entire ipfs node, cancelling
-that context will shut down every single subprocess that ipfs runs.
-
-The easiest way to set up a context for an ipfs node is something like this:
 ```
-ctx, cancel := context.WithCancel(context.Background)
-```
-This creates a context, and an anonymous function that can be called to cancel
-the context, and by extension, all of the ipfs node.
-
-### Ipfs Options
-So, now that all of that is out of the way, lets look at different configuration
-options.
-
-#### Online/Offline
-The default state for a nodebuilder is 'Offline', so set it to 'Online' simply
-call the `Online()` method.
-```
-builder := core.NewNodeBuilder().Online()
-```
-Or:
-```
-builder := core.NewNodeBuilder()
-builder.Online()
+cfg := &core.BuildCfg{
+	Repo:    r,
+	Online:  true,
+	Routing: myRoutingOption,
+}
 ```
 
 A node created in 'Online' mode will start up bootstrapping, bitswap exchange,
 and other network interfaces.
 
-#### SetRepo
+#### Repo
 The ipfs 'repo' or repository represents all data that persists past a single
 instance. This currently includes the configuration file and the local
 datastore. By default, you will be given a blank config and an in memory
@@ -63,21 +41,30 @@ import "github.com/ipfs/go-ipfs/repo/fsrepo"
 .
 .
 .
-r := fsrepo.At("/path/to/.ipfs")
-if err := r.Open(); err != nil {
+r := fsrepo.Open("/path/to/.ipfs")
+if err != nil {
 	// Deal with the error
 }
-
-builder.SetRepo(r)
 ```
 
 #### SetRouting
 ipfs by default will use our DHT network for getting provider information and
 ipns entries. If you wish to implement a separate routing system for your node
 to get this information through, just make an object that implements the
-IpfsRouting interface and pass the builder a RoutingOption for it.
+IpfsRouting interface and pass the build configuration a RoutingOption for it.
+
+### Context
+If you have never dealt with contexts before, I highly recommend you first go read
+[this wonderful explanation](https://blog.golang.org/context). Now, the context
+we pass into the new `Node` we are creating is the "master" context to the entire
+ipfs node, cancelling that context will shut down every single subprocess that ipfs
+runs.
+
+The easiest way to set up a context for an ipfs node is something like this:
 ```
-builder := core.NewNodeBuilder().Online()
-builder.SetRouting(myRoutingOption)
+ctx, cancel := context.WithCancel(context.Background)
 ```
+This creates a context, and an anonymous function that can be called to cancel
+the context, and by extension, all of the ipfs node.
+
 

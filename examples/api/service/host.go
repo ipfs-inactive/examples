@@ -17,13 +17,16 @@ func main() {
 		panic(err)
 	}
 
-	nb := core.NewNodeBuilder().Online()
-	nb.SetRepo(r)
-
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	nd, err := nb.Build(ctx)
+	cfg := &core.BuildCfg{
+		Repo:   r,
+		Online: true,
+	}
+
+	nd, err := core.NewNode(ctx, cfg)
+
 	if err != nil {
 		panic(err)
 	}
