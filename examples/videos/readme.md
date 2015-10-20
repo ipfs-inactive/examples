@@ -15,11 +15,11 @@ ipfs cat $vidhash | mplayer -vo xv -
 
 Via local gateway:
 ```
-mplayer http://localhost:4001/ipfs/$vidhash
+mplayer http://localhost:8080/ipfs/$vidhash
 
 # or open it up in a tab in chrome (or firefox)
 
-chromium http://localhost:4001/ipfs/$vidhash
+chromium http://localhost:8080/ipfs/$vidhash
 ```
 (Note: the gateway method works with most video players and browsers)
 
