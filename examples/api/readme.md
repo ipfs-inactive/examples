@@ -53,13 +53,12 @@ ipns entries. If you wish to implement a separate routing system for your node
 to get this information through, just make an object that implements the
 IpfsRouting interface and pass the build configuration a RoutingOption for it.
 
-### Ipfs Configuration Options
-
 ### Context
-If youve never dealt with contexts before, I highly recommend you first go read
+If you have never dealt with contexts before, I highly recommend you first go read
 [this wonderful explanation](https://blog.golang.org/context). Now, the context
-we pass into `Build` is the "master" context to the entire ipfs node, cancelling
-that context will shut down every single subprocess that ipfs runs.
+we pass into the new `Node` we are creating is the "master" context to the entire
+ipfs node, cancelling that context will shut down every single subprocess that ipfs
+runs.
 
 The easiest way to set up a context for an ipfs node is something like this:
 ```
