@@ -20,8 +20,8 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	cfg := &core.BuildCfg {
-		Repo: r,
+	cfg := &core.BuildCfg{
+		Repo:   r,
 		Online: true,
 	}
 
