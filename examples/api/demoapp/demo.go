@@ -1,7 +1,7 @@
 package main
 
 import (
-    "bufio"
+	"bufio"
 	"fmt"
 	"io"
 	"os"
@@ -31,8 +31,8 @@ func SetupIpfs() (*core.IpfsNode, error) {
 		return nil, err
 	}
 
-	cfg := &core.BuildCfg {
-		Repo: r,
+	cfg := &core.BuildCfg{
+		Repo:   r,
 		Online: true,
 	}
 
