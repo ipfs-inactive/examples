@@ -47,6 +47,9 @@ function render(path) {
       .removeClass('navbar-fixed-top')
 
     $('#loading').hide()
+
+    // set window title to first h1 or h2 in markdown text
+    document.title = document.querySelector("h1, h2").textContent;
   })
 }
 
