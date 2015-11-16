@@ -46,7 +46,7 @@ $ ipfs name publish <the new hash>
 Published to <your peer ID>: <the new hash>
 ```
 
-Viola! Now, if you resolve that entry again, you'll see your new object.
+Voila! Now, if you resolve that entry again, you'll see your new object.
 
 Congratulations! You just successfully published and resolved an ipns entry!
 Now, there are a few things to note; first, right now, you can only
