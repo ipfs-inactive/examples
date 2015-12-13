@@ -5,7 +5,7 @@ file for me from a remote server", just `ipfs cat` or `ipfs get` which act
 the same way no matter where the actual object is located. While this is nice,
 sometimes you want to be able to control what you keep around. Pinning is the
 mechanism that allows you to tell ipfs to always keep a given object local.
-ipfs has a fairly agressive caching mechanism that will keep an object local
+ipfs has a fairly aggressive caching mechanism that will keep an object local
 for a short time after you perform any ipfs operation on it, but these objects
 may get garbage collected fairly regularly. To prevent that garbage collection
 simply pin the hash you care about. Objects added through `ipfs add` are pinned
