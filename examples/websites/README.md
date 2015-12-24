@@ -48,6 +48,10 @@ And also try the same link on the public gateway. Once you're convinced that wor
 lets again hide the hash. Change your DNS TXT record to `dnslink=/ipns/<your peer id>`,
 wait for that record to propogate, and then try accessing `http://localhost:8080/ipns/your.domain`.
 
+At this point, you have a website on ipfs/ipns, and you may be wondering how you could expose it at `http://your.domain`, so that the Internet users of today may access it too without them having to know about any of this. It's actually surpisingly simple to do, all you need for this is your previously created TXT record and to point the A record of `your.domain` to the ip address of an ipfs daemon that listens on port 80 for HTTP requests (such as `gateway.ipfs.io`). The users' browsers will send `your.domain` in the Host header of the requests, and you have your dnslink TXT records, so the ipfs gateway will recognize `your.domain` as an IPNS name, and so it will serve from under `/ipns/your.domain/` instead of `/`.
+
+So, if you point `your.domain`'s A record to the IP of `gateway.ipfs.io`, and then wait for the DNS to propogate, then anyone should be able to access your ipfs-hosted site without any extra configuration simply at `http://your.domain`.
+
 Happy Hacking!
 
 By
