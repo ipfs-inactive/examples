@@ -7,7 +7,7 @@ import (
 
 	core "github.com/ipfs/go-ipfs/core"
 	corenet "github.com/ipfs/go-ipfs/core/corenet"
-	peer "github.com/ipfs/go-libp2p/p2p/peer"
+	peer "gx/ipfs/QmccGfZs3rzku8Bv6sTPH3bMUKD1EVod8srgRjt5csdmva/go-libp2p/p2p/peer"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
 	"golang.org/x/net/context"
