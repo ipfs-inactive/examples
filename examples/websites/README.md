@@ -9,7 +9,7 @@ $ ipfs daemon
 And add the directory containing your website:
 ```bash
 $ ls mysite
-index.html
+img index.html
 $ ipfs add -r mysite
 added QmcMN2wqoun88SVF5own7D5LUpnHwDA6ALZnVdFXhnYhAs mysite/img/spacecat.jpg
 added QmS8tC5NJqajBB5qFhcA1auav14iHMnoMZJWfmr4k3EY6w mysite/img
