@@ -19,4 +19,4 @@ Feel free to join in. All welcome.
 
 ## License
 
-MIT © 2016 IPFS
+MIT © 2016 Protocol Labs, Inc.
