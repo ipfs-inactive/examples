@@ -1,27 +1,30 @@
 ## Playing With the Network
-Ipfs is all about networking! Included are a useful set of commands
-to aid in observing that network.
+
+IPFS is all about networking! Included are a useful set of commands
+to aid in observing the network.
 
 See who you're directly connected to:
-```
+
+```sh
 ipfs swarm peers
 ```
 
 Get a listing of the entire network:
-```
+
+```sh
 ipfs diag net
 ```
 
-Manually connect to a specific peer:
-```
-ipfs swarm connect /ip4/104.236.176.52/tcp/4001/ipfs/qmsolnsgccfuzqjzradhn95w2crsfmzutddwp8hxahca9z
+Manually connect to a specific peer. If the peer below doesn't work, choose one from the output of `ipfs swarm peers`.
+
+```sh
+ipfs swarm connect /ip4/104.236.176.52/tcp/4001/ipfs/QmSoLnSGccFuZQJzRadHn95W2CrSFmZuTdDWP8HXaHca9z
 ```
 
 Search for a given peer on the network:
-```
-ipfs dht findpeer $peerid
-```
 
-
+```sh
+ipfs dht findpeer QmSoLnSGccFuZQJzRadHn95W2CrSFmZuTdDWP8HXaHca9z
+```
 
 By [whyrusleeping](http://github.com/whyrusleeping)
