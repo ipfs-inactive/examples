@@ -44,7 +44,7 @@ hello ipfs!
 
 Copies here have a really cool feature in that they don't take up any extra
 disk space (aside from a small bit of metadata). This means that you can have
-multiple copies of *huge* files in different places of the files api without
+multiple copies of *huge* files in different places of the files API without
 having to worry about wasting space.
 
 `cp` is also able to copy files from general ipfs hashes too:
@@ -76,8 +76,8 @@ ChildBlocks: 3
 Type: directory
 ```
 
-You can then take that hash and investigate it to see that it matches whats in
-the files api:
+You can then take that hash and investigate it to see that it matches what's in
+the files API:
 
 ```bash
 $ ipfs ls QmPdZg2VXP4XcUPziqMMB4msjJeqcCVWdtA9251CRkwARC
@@ -86,6 +86,6 @@ QmUe6akh4xc2H1yPgo7S5jQhvjGTWY6no9NgHSajDQPusR 70 hello
 QmWChe9uQKJgZdjwuTjY1qcUebVDu7Jb5LpSZ2XXyvzdfh 26 multi
 ```
 
-There are a few other commands in the files api command set, and you can check them out by running `ipfs files --help`. Hopefully you now have a good idea of what and how this api works and some of the things you can accomplish with it.
+There are a few other commands in the files API command set, and you can check them out by running `ipfs files --help`. Hopefully you now have a good idea of what and how this API works and some of the things you can accomplish with it.
 
 By [whyrusleeping](http://github.com/whyrusleeping)
