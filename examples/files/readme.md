@@ -5,7 +5,9 @@ have a similar interface to traditional filesystems (mutable files and
 directories) while being backed by ipfs. In this post, I will give a few useful
 examples on what is possible.
 
-Lets start by making a couple directories and a few files.
+Within each ipfs node is a virtual 'root' directory which you can access and
+manipulate through the `ipfs files` subcommand.
+Let's start out by making a couple directories and a few files.
 
 ```bash
 $ ipfs files mkdir -p /foo/bar
@@ -16,8 +18,10 @@ $ ipfs files mkdir /baz
 
 ```bash
 $ echo "hello ipfs!" | ipfs files write --create /foo/hello
-$ echo "merkledag" | ipfs files write --create /foo/bar/blob
+$ echo "merkledag" | ipfs files write -e /foo/bar/blob
 ```
+
+Note: `-e` is an alias for `--create`.
 
 You can list out directories:
 
