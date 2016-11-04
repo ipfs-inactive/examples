@@ -64,7 +64,7 @@ then wait for the DNS to propogate, then anyone should be able to access your
 ipfs-hosted site without any extra configuration simply at
 `http://your.domain`.
 
-Alternately, it is possible to use CNAME records to point at the DNS records
+Alternatively, it is possible to use CNAME records to point at the DNS records
 of the gateway. This way, IP addresses of the gateway are automtically
 updated. Note however that CNAME records to not allow for other records, such
 as a TXT to refer to the ipfs/ipns record. Because of this, ipfs allows to
