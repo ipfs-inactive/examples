@@ -18,7 +18,7 @@ added QmYeAiiK1UfB8MGLRefok1N7vBTyX8hGPuMXZ4Xq1DPyt7 mysite/
 ```
 
 The very last hash next to the folder name is the one you want, lets call it
-`$SITE_HASH` for now.  
+`$SITE_HASH` for now.
 
 Now, you can test it out locally by opening `http://localhost:8080/ipfs/$SITE_HASH`
 in your web browser! Next, to view it coming from another ipfs node, you can try
@@ -48,9 +48,19 @@ And also try the same link on the public gateway. Once you're convinced that wor
 lets again hide the hash. Change your DNS TXT record to `dnslink=/ipns/<your peer id>`,
 wait for that record to propogate, and then try accessing `http://localhost:8080/ipns/your.domain`.
 
-At this point, you have a website on ipfs/ipns, and you may be wondering how you could expose it at `http://your.domain`, so that the Internet users of today may access it too without them having to know about any of this. It's actually surpisingly simple to do, all you need for this is your previously created TXT record and to point the A record of `your.domain` to the ip address of an ipfs daemon that listens on port 80 for HTTP requests (such as `gateway.ipfs.io`). The users' browsers will send `your.domain` in the Host header of the requests, and you have your dnslink TXT records, so the ipfs gateway will recognize `your.domain` as an IPNS name, and so it will serve from under `/ipns/your.domain/` instead of `/`.
+At this point, you have a website on ipfs/ipns, and you may be wondering how you could expose it at `http://your.domain`, so that the Internet users of today may access it too without them having to know about any of this. It's actually surpisingly simple to do, all you need for this is your previously created TXT record and to point the A record of `your.domain` to the IP address of an ipfs daemon that listens on port 80 for HTTP requests (such as `gateway.ipfs.io`). The users' browsers will send `your.domain` in the Host header of the requests, and you have your dnslink TXT records, so the ipfs gateway will recognize `your.domain` as an IPNS name, and so it will serve from under `/ipns/your.domain/` instead of `/`.
 
 So, if you point `your.domain`'s A record to the IP of `gateway.ipfs.io`, and then wait for the DNS to propogate, then anyone should be able to access your ipfs-hosted site without any extra configuration simply at `http://your.domain`.
+
+Alternately, it is possible to use CNAME records to point at the DNS records of
+the gateway. This way, IP addresses of the gateway are automtically
+updated. Note however that CNAME records to not allow for other records, such as
+a TXT to refer to the ipfs/ipns record. Because of this, ipfs allows to create
+a DNS TXT record for `_dnslink.your.domain` with `dnslink=/ipns/<your peer id>`.
+
+So by creating a CNAME for `your.domain` to `gateway.ipfs.io` and adding a
+`_dnslink.your.domain` record with `dnslink=/ipns/<your peer id>` you can host
+your website without explicitly referring to IP addresses of the ipfs gateway.
 
 Happy Hacking!
 
