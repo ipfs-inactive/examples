@@ -43,6 +43,10 @@ $ ipfs name publish $SITE_HASH
 Published to <your peer id>: /ipfs/$SITE_HASH
 ```
 
+(Disclaimer: When using IPNS to update websites, it's important to think about that
+assets could be loaded from two different resolved hashes when updating your website,
+leading to outdated/missing assets unless accounted for)
+
 Now, you can test that it worked by viewing: `http://localhost:8080/ipns/<your peer id>`.
 And also try the same link on the public gateway. Once you're convinced that works,
 lets again hide the hash. Change your DNS TXT record to `dnslink=/ipns/<your peer id>`,
