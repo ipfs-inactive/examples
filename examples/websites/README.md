@@ -17,17 +17,17 @@ added QmYh6HbZhHABQXrkQZ4aRRSoSa6bb9vaKoHeumWex6HRsT mysite/index.html
 added QmYeAiiK1UfB8MGLRefok1N7vBTyX8hGPuMXZ4Xq1DPyt7 mysite/
 ```
 
-The very last hash next to the folder name is the one you want, lets call it
+The very last hash next to the folder name is the one you want, let's call it
 `$SITE_HASH` for now.
 
 Now, you can test it out locally by opening `http://localhost:8080/ipfs/$SITE_HASH`
 in your web browser! Next, to view it coming from another ipfs node, you can try
 `http://gateway.ipfs.io/ipfs/$SITE_HASH`. Cool, right?  But those hashes are
-rather ugly. Lets look at some ways to get rid of them.
+rather ugly. Let's look at some ways to get rid of them.
 
 First, you can do a simple DNS TXT record, containing `dnslink=/ipfs/$SITE_HASH`.
 Once that record propagates, you should be able to view your site at
-`http://localhost:8080/ipns/your.domain`. Now thats quite a bit cleaner.
+`http://localhost:8080/ipns/your.domain`. Now that's quite a bit cleaner.
 You can also try this on the gateway at `http://gateway.ipfs.io/ipns/your.domain`
 
 Next, you might be asking "well what if i want to change my website, DNS is slow!"
@@ -45,7 +45,7 @@ Published to <your peer id>: /ipfs/$SITE_HASH
 
 Now, you can test that it worked by viewing: `http://localhost:8080/ipns/<your peer id>`.
 And also try the same link on the public gateway. Once you're convinced that works,
-lets again hide the hash. Change your DNS TXT record to `dnslink=/ipns/<your peer id>`,
+let's again hide the hash. Change your DNS TXT record to `dnslink=/ipns/<your peer id>`,
 wait for that record to propagate, and then try accessing `http://localhost:8080/ipns/your.domain`.
 
 At this point, you have a website on ipfs/ipns, and you may be wondering how
