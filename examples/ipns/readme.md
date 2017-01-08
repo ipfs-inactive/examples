@@ -2,7 +2,7 @@
 
 ipns is a way to add a small amount of mutability to the permanent immutability
 that is ipfs. It allows you to store a reference to an ipfs hash under the
-namespace of your peerID ( hash of your public key ). The commands to set it up
+namespace of your peerID ( the hash of your public key ). The commands to set it up
 are quite simple.
 
 First, you'll need some content to publish:
@@ -11,7 +11,7 @@ First, you'll need some content to publish:
 $ echo 'Let\'s have some mutable fun!' | ipfs add
 ```
 
-note the hash that was output, and publish that hash out to the network:
+Note the hash that was printed out, and use it here to publish it to the network:
 
 ```
 $ ipfs name publish <that hash>
@@ -31,7 +31,7 @@ cached the entry locally; give it a shot on another computer running ipfs.
 Another thing to try is viewing it on a gateway:
 
 ```
-http://gateway.ipfs.io/ipns/<your peer ID>
+https://ipfs.io/ipns/<your peer ID>
 ```
 
 So, now comes the fun part: Lets change things.
@@ -49,9 +49,7 @@ Published to <your peer ID>: <the new hash>
 Voila! Now, if you resolve that entry again, you'll see your new object.
 
 Congratulations! You just successfully published and resolved an ipns entry!
-Now, there are a few things to note; first, right now, you can only
-publish a single entry per ipfs node. This will change fairly soon. Second,
-updating an ipns entry can "break links" because anything referencing an ipns
+Note that updating an ipns entry can "break links" because anything referencing an ipns
 entry might no longer point to the content it expected. There is no way around 
 this ( you know, mutability ), therefore, ipns links should be used carefully if
 you want to ensure permanence. In the future, we may have ipns entries work as
