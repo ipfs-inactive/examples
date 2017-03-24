@@ -7,10 +7,10 @@ import (
 
 	core "github.com/ipfs/go-ipfs/core"
 	corenet "github.com/ipfs/go-ipfs/core/corenet"
-	peer "github.com/ipfs/go-ipfs/p2p/peer"
+	peer "gx/ipfs/QmWUswjn261LSyVxWAEpMVtPdy8zmKBJJfBpG3Qdpa8ZsE/go-libp2p-peer"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
-	"golang.org/x/net/context"
+	"context"
 )
 
 func main() {
