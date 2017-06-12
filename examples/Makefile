@@ -1,5 +1,5 @@
 
-url="http://gateway.ipfs.io/ipfs/"
+url="https://ipfs.io/ipfs/"
 
 publish:
 	@export hash=$(shell ipfs add -r -q . | tail -n1); \
