@@ -9,12 +9,6 @@ See who you're directly connected to:
 ipfs swarm peers
 ```
 
-Get a listing of the entire network:
-
-```sh
-ipfs diag net
-```
-
 Manually connect to a specific peer. If the peer below doesn't work, choose one from the output of `ipfs swarm peers`.
 
 ```sh
