@@ -9,6 +9,7 @@ First, lets get some imports:
 package main
 
 import (
+	"context"
 	"io"
 	"net/http"
 
@@ -16,7 +17,6 @@ import (
 	"github.com/ipfs/go-ipfs/core"
 	"github.com/ipfs/go-ipfs/core/coreunix"
 	"github.com/ipfs/go-ipfs/repo/fsrepo"
-	"golang.org/x/net/context"
 )
 ```
 
