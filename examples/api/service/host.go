@@ -7,7 +7,7 @@ import (
 	corenet "github.com/ipfs/go-ipfs/core/corenet"
 	fsrepo "github.com/ipfs/go-ipfs/repo/fsrepo"
 
-	"golang.org/x/net/context"
+	"context"
 )
 
 func main() {
