@@ -109,10 +109,12 @@ Similar to `systemd`, on OS X you can run `go-ipfs` via a user LaunchAgent.
 ```
 The reason for running `ipfs` under a shell is to avoid needing to hard-code the user's home directory in the job.
 
+If you installed IPFS with `brew install ipfs`, change the path accordingly to e.g. `/usr/local/bin/ipfs`
+
 - To start the job, run `launchctl load ~/Library/LaunchAgents/io.ipfs.go-ipfs.plist`
 
 Notes:
 
-- To check that the job is running, run `launchctl list | grep ipfs`.
+- To check that the job is running, run `launchctl list | grep ipfs`. It should give you a line such as this: `1234	0	io.ipfs.go-ipfs`; a dash in lieu of a PID is a sign of failure: check system.log in your Console.app.
 - IPFS should now start whenever you log in (and exit when you log out).
 - [LaunchControl](http://www.soma-zone.com/LaunchControl/) is a GUI tool which simplifies management of LaunchAgents.
