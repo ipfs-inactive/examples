@@ -8,7 +8,7 @@ are quite simple.
 First, you'll need some content to publish:
 
 ```
-$ echo 'Let\'s have some mutable fun!' | ipfs add
+$ echo 'Let us have some mutable fun!' | ipfs add
 ```
 
 Note the hash that was printed out, and use it here to publish it to the network:
