@@ -21,8 +21,8 @@ ipfs pin ls --type=all
 
 As you may have noticed, the first `ipfs pin rm` command didnt work, it should
 have warned you that the given hash was "pinned recursively". There are three
-types of pins in the ipfs world; direct pins, which pin just a single block, and
-no others in relation to it. recursive pins, which pin a given block and all of
+types of pins in the ipfs world: direct pins, which pin just a single block, and
+no others in relation to it; recursive pins, which pin a given block and all of
 its children, and indirect pins, which are the result of a given blocks parent
 being pinned recursively.
 
