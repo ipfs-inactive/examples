@@ -54,10 +54,6 @@ func SetupIpfs() (*core.IpfsNode, error) {
 		Online: true,
 	}
 
-	cfg := new(core.BuildCfg)
-	cfg.Repo = r
-	cfg.Online = true
-
 	return core.NewNode(context.Background(), cfg)
 }
 ```
